@@ -17,12 +17,20 @@ function render(data) {
 socket.on("messages", function (data) {
     render(data)})
 
-  function addMessage(e) {
+function addMessage(e) {
     const mensaje = {
       author: document.getElementById("username").value,
       text: document.getElementById("texto").value,
     };
+
+    limpiaChat()
+    
     socket.emit("new-message", mensaje);
     return false;
-  }
-  
+}
+
+function limpiaChat() {
+    
+    document.getElementById("username").value=""
+    document.getElementById("texto").value=""
+}
